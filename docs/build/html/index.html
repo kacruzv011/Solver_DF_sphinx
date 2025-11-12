@@ -1,0 +1,185 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solución del Campo Electroestático 2D &mdash; Taller Electrostatica  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Taller Electrostatica
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Solución del Campo Electroestático 2D</a><ul>
+<li><a class="reference internal" href="#referencia-de-la-api">Referencia de la API</a><ul>
+<li><a class="reference internal" href="#campo_estatico_mdf.solver.LaplaceSolver2D"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D</span></code></a><ul>
+<li><a class="reference internal" href="#campo_estatico_mdf.solver.LaplaceSolver2D.calculate_electric_field"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.calculate_electric_field()</span></code></a></li>
+<li><a class="reference internal" href="#campo_estatico_mdf.solver.LaplaceSolver2D.solve_jacobi"><code class="docutils literal notranslate"><span class="pre">LaplaceSolver2D.solve_jacobi()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-y-tablas">Índices y tablas</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Taller Electrostatica</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Solución del Campo Electroestático 2D</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="solucion-del-campo-electroestatico-2d">
+<h1>Solución del Campo Electroestático 2D<a class="headerlink" href="#solucion-del-campo-electroestatico-2d" title="Link to this heading"></a></h1>
+<p>Este proyecto resuelve la Ecuación de Laplace en 2D usando el Método de Diferencias Finitas (MDF).
+La ecuación discretizada en un punto (i, j) es:</p>
+<div class="math notranslate nohighlight">
+\[V_{i+1, j} + V_{i-1, j} + V_{i, j+1} + V_{i, j-1} - 4 V_{i, j} = 0\]</div>
+<p>Se utiliza el método iterativo de Jacobi para encontrar la solución del potencial eléctrico V. A partir de V, se calcula el campo eléctrico E como:</p>
+<div class="math notranslate nohighlight">
+\[\vec{E} = -\nabla V\]</div>
+<section id="referencia-de-la-api">
+<h2>Referencia de la API<a class="headerlink" href="#referencia-de-la-api" title="Link to this heading"></a></h2>
+<p>A continuación se detalla la API del módulo de cálculo.</p>
+<dl class="py class" id="module-campo_estatico_mdf.solver">
+<dt class="sig sig-object py" id="campo_estatico_mdf.solver.LaplaceSolver2D">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">campo_estatico_mdf.solver.</span></span><span class="sig-name descname"><span class="pre">LaplaceSolver2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V_top</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V_bottom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V_left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/campo_estatico_mdf/solver.html#LaplaceSolver2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#campo_estatico_mdf.solver.LaplaceSolver2D" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Resuelve la Ecuación de Laplace en 2D en una región cuadrada
+utilizando el Método de Diferencias Finitas (MDF) con el
+algoritmo iterativo de Jacobi.</p>
+<dl class="simple">
+<dt>Atributos:</dt><dd><p>N (int): Número de puntos en cada dirección de la malla (N x N).
+V (np.ndarray): Matriz que representa el potencial eléctrico en la malla.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="campo_estatico_mdf.solver.LaplaceSolver2D.calculate_electric_field">
+<span class="sig-name descname"><span class="pre">calculate_electric_field</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/campo_estatico_mdf/solver.html#LaplaceSolver2D.calculate_electric_field"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#campo_estatico_mdf.solver.LaplaceSolver2D.calculate_electric_field" title="Link to this definition"></a></dt>
+<dd><p>Calcula el campo eléctrico E = -grad(V) usando diferenciación numérica.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tupla con las componentes (Ex, Ey).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[np.ndarray, np.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="campo_estatico_mdf.solver.LaplaceSolver2D.solve_jacobi">
+<span class="sig-name descname"><span class="pre">solve_jacobi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/campo_estatico_mdf/solver.html#LaplaceSolver2D.solve_jacobi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#campo_estatico_mdf.solver.LaplaceSolver2D.solve_jacobi" title="Link to this definition"></a></dt>
+<dd><p>Resuelve la Ecuación de Laplace iterativamente usando el método de Jacobi.</p>
+<p>El método se detiene cuando la diferencia máxima entre la matriz de potencial
+de dos iteraciones consecutivas es menor que la tolerancia <cite>tol</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tol</strong> (<em>float</em>) – Criterio de convergencia.</p></li>
+<li><p><strong>max_iter</strong> (<em>int</em>) – Límite de iteraciones para evitar bucles infinitos.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Número de iteraciones realizadas.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="indices-y-tablas">
+<h1>Índices y tablas<a class="headerlink" href="#indices-y-tablas" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Estudiante Taller Avanzado.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
