@@ -1,5 +1,5 @@
 Metadata-Version: 2.4
-Name: campo-estatico-mdf
+Name: Solver_campoelectrico_kevin
 Version: 0.1.1
 Summary: Un solver para el campo electrostático 2D usando diferencias finitas.
 Author-email: Estudiante Taller Avanzado <tu.email@example.com>
