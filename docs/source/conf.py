@@ -15,5 +15,18 @@ extensions = [
 templates_path = ['_templates']
 exclude_patterns = []
 
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo'
 html_static_path = ['_static']
+
+# 👇👇 ***ESTO ES LO QUE FALTABA***
+html_baseurl = "https://kacruzv011.github.io/Solver_DF_sphinx/"
+
+# Para que Furo genere rutas relativas (MUY IMPORTANTE EN GITHUB PAGES)
+html_theme_options = {
+    "light_logo": "logo.png",   # opcional
+    "dark_logo": "logo.png",    # opcional
+    "sidebar_hide_name": False,
+}
+
+# obligar rutas relativas para que cargue el CSS en GitHub Pages
+html_scaled_image_link = False
