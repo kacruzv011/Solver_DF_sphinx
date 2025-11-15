@@ -5,7 +5,6 @@ on:
     branches:
       - main
 
-# Permisos explícitos para que la Action pueda escribir en el despliegue de Pages
 permissions:
   contents: read
   pages: write
@@ -29,6 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
+          pip install furo
           pip install -e .[dev]
 
       - name: Build Sphinx docs
