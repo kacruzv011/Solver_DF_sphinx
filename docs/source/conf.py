@@ -2,9 +2,9 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../../src'))
 
-project = 'Taller Electrostatica'
-copyright = '2023, Estudiante Taller Avanzado'
-author = 'Estudiante Taller Avanzado'
+project = 'Taller Electrostatica 2D laplace solver'
+copyright = '2025, Kevin-Cruz taller_laplace'
+author = 'Kevin Andres Cruz Velandia'
 
 extensions = [
     'sphinx.ext.autodoc',
