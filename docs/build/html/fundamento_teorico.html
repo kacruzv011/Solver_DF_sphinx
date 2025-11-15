@@ -1,16 +1,16 @@
 <!doctype html>
 <html class="no-js" lang="en" data-content_root="./">
-  <head>
-<meta charset="utf-8">
+  <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="#">
-        <link rel="canonical" href="https://kacruzv011.github.io/Solver_DF_sphinx/search.html">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="prev" title="Uso Básico" href="uso_basico.html">
+        <link rel="canonical" href="https://kacruzv011.github.io/Solver_DF_sphinx/fundamento_teorico.html">
         <link rel="prefetch" href="_static/logo.png" as="image">
         <link rel="prefetch" href="_static/logo.png" as="image">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
-<meta name="robots" content="noindex" />
-<title>Search - Taller Electrostatica  documentation</title><link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+        <title>Fundamento Teórico - Taller Electrostatica documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
     
@@ -175,7 +175,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
@@ -191,18 +191,18 @@
   
   <span class="sidebar-brand-text">Taller Electrostatica  documentation</span>
   
-</a><form class="sidebar-search-container" method="get" action="#" role="search">
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduccion.html">Introducción</a></li>
 <li class="toctree-l1"><a class="reference internal" href="instalacion.html">Instalación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="uso_basico.html">Uso Básico</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fundamento_teorico.html">Fundamento Teórico</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Fundamento Teórico</a></li>
 </ul>
 
 </div>
@@ -222,7 +222,13 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/fundamento_teorico.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
               <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
               <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
@@ -230,22 +236,31 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          
-<noscript>
-<div class="admonition error">
-  <p class="admonition-title">Error</p>
-  <p>
-    Please activate JavaScript to enable the search functionality.
-  </p>
+          <section id="fundamento-teorico">
+<h1>Fundamento Teórico<a class="headerlink" href="#fundamento-teorico" title="Link to this heading">¶</a></h1>
+<section id="ecuacion-de-laplace">
+<h2>Ecuación de Laplace<a class="headerlink" href="#ecuacion-de-laplace" title="Link to this heading">¶</a></h2>
+<p>La Ecuación de Laplace describe el potencial eléctrico <span class="math notranslate nohighlight">\(V\)</span> en una región del espacio libre de cargas. En dos dimensiones cartesianas, la ecuación es:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\frac{\partial^2 V}{\partial x^2} + \frac{\partial^2 V}{\partial y^2} = 0\]</div>
 </div>
-</noscript>
-
-<div id="search-results"></div>
+</section>
+<section id="metodo-de-diferencias-finitas-mdf">
+<h2>Método de Diferencias Finitas (MDF)<a class="headerlink" href="#metodo-de-diferencias-finitas-mdf" title="Link to this heading">¶</a></h2>
+<p>Para resolver esta ecuación numéricamente, discretizamos el dominio en una cuadrícula de puntos con espaciado <span class="math notranslate nohighlight">\(h\)</span>. La segunda derivada se puede aproximar mediante diferencias centrales, lo que transforma la ecuación diferencial en una ecuación algebraica en cada punto interior <span class="math notranslate nohighlight">\((i, j)\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[V_{i+1, j} + V_{i-1, j} + V_{i, j+1} + V_{i, j-1} - 4 V_{i, j} = 0\]</div>
+</div>
+<p>Esta ecuación establece que el potencial en un punto es el promedio del potencial de sus cuatro vecinos más cercanos. Este sistema de ecuaciones lineales se resuelve iterativamente usando el método de Jacobi.</p>
+</section>
+</section>
 
         </article>
       </div>
@@ -253,7 +268,17 @@
         
         <div class="related-pages">
           
-          
+          <a class="prev-page" href="uso_basico.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Uso Básico</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -272,8 +297,28 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Fundamento Teórico</a><ul>
+<li><a class="reference internal" href="#ecuacion-de-laplace">Ecuación de Laplace</a></li>
+<li><a class="reference internal" href="#metodo-de-diferencias-finitas-mdf">Método de Diferencias Finitas (MDF)</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
@@ -282,8 +327,6 @@
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>
-    
-<script src="_static/searchtools.js"></script>
-<script src="_static/language_data.js"></script>
-<script src="searchindex.js"></script></body>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
 </html>

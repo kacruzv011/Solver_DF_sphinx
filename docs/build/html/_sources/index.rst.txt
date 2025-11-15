@@ -1,31 +1,29 @@
-.. Taller Electrostatica documentation master file.
+Solución del Campo Electroestático
+==================================
 
-Solución del Campo Electroestático 2D
-======================================
+¡Bienvenido a la documentación del proyecto!
 
-Este proyecto resuelve la Ecuación de Laplace en 2D usando el Método de Diferencias Finitas (MDF).
-La ecuación discretizada en un punto (i, j) es:
+Esta documentación está generada con Sphinx y describe la implementación de un solver para la Ecuación de Laplace en 2D. Navega por las diferentes secciones usando el menú lateral.
 
-.. math::
-   V_{i+1, j} + V_{i-1, j} + V_{i, j+1} + V_{i, j-1} - 4 V_{i, j} = 0
+.. toctree::
+   :maxdepth: 2
+   :caption: Contenido:
 
-Se utiliza el método iterativo de Jacobi para encontrar la solución del potencial eléctrico V. A partir de V, se calcula el campo eléctrico E como:
-
-.. math::
-   \vec{E} = -\nabla V
+   introduccion
+   instalacion
+   uso_basico
+   fundamento_teorico
 
 Referencia de la API
---------------------
-
-A continuación se detalla la API del módulo de cálculo.
+====================
 
 .. automodule:: campo_estatico_mdf.solver
    :members:
    :undoc-members:
    :show-inheritance:
 
-Índices y tablas
-==================
+Índices y Tablas
+================
 
 * :ref:`genindex`
 * :ref:`modindex`
