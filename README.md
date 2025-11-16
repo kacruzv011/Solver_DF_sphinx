@@ -41,8 +41,7 @@ Este proyecto proporciona una solución numérica para la **Ecuación de Laplace
 Crea una captura de pantalla de tu aplicación de Streamlit mostrando los gráficos y reemplaza la siguiente línea.
 Puedes subir la imagen a la raíz de tu repositorio de GitHub y enlazarla.
 -->
-![Captura de la App de Streamlit](<img width="1819" height="894" alt="image" src="https://github.com/user-attachments/assets/b23fb0b0-cb2f-435f-97c8-a4c59f56cd39" />
-)
+![Captura de la App de Streamlit](https://github.com/kacruzv011/Solver_DF_sphinx/blob/main/imagen.png)
 
 ---
 
