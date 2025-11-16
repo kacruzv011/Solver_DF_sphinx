@@ -1,7 +1,7 @@
 Uso Básico
 ==========
 
-El siguiente ejemplo muestra cómo importar el solver, configurar una simulación con condiciones de contorno y resolver el sistema.
+El siguiente ejemplo muestra cómo importar el solver, configurar una simulación, elegir un método y resolver el sistema.
 
 .. code-block:: python
 
@@ -12,8 +12,8 @@ El siguiente ejemplo muestra cómo importar el solver, configurar una simulació
    #    con la frontera izquierda a 10V y las demás a 0V.
    solver = LaplaceSolver2D(N=50, V_left=10.0)
 
-   # 2. Resolver el sistema hasta alcanzar la convergencia
-   iterations = solver.solve_jacobi(tol=1e-5)
+   # 2. Resolver el sistema usando el método de Gauss-Seidel
+   iterations = solver.solve(method='gauss-seidel', tol=1e-5)
    print(f"La simulación convergió en {iterations} iteraciones.")
 
    # 3. El potencial V está disponible en el atributo solver.V
