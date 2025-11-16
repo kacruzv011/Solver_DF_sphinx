@@ -1,37 +1,154 @@
-# Taller Avanzado: Solución del Campo Electroestático 2D
+# Solución del Campo Electroestático 2D por Diferencias Finitas
 
-Este proyecto implementa un solver para la Ecuación de Laplace en 2D usando el Método de Diferencias Finitas (MDF) y el método iterativo de Jacobi. Incluye una interfaz gráfica con Streamlit para visualizar los resultados.
+<!-- 
+================================================================================
+IMPORTANTE: Reemplaza los siguientes valores con los tuyos:
+- Reemplaza "Solver_campoelectrico_kevin" con el nombre final de tu paquete en PyPI.
+- Reemplaza la URL de la app de Streamlit con el enlace que te dio Streamlit Cloud.
+================================================================================
+-->
 
-## Estructura del Proyecto
+[![PyPI version](https://img.shields.io/pypi/v/Solver_campoelectrico_kevin.svg)](https://pypi.org/project/Solver_campoelectrico_kevin/)
+[![GitHub Actions Workflow Status](https://github.com/kacruzv011/Solver_DF_sphinx/actions/workflows/docs.yml/badge.svg)](https://github.com/kacruzv011/Solver_DF_sphinx/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- `src/campo_estatico_mdf`: El paquete Python con la lógica científica (`solver.py`).
-- `tests/`: Pruebas unitarias con `pytest`.
-- `app.py`: La interfaz de usuario web con Streamlit.
-- `docs/`: Carpeta para la documentación generada con Sphinx.
-- `.github/workflows`: Automatización para desplegar la documentación en GitHub Pages.
+Este proyecto proporciona una solución numérica para la **Ecuación de Laplace en 2D** utilizando el Método de Diferencias Finitas (MDF). El software está desarrollado en Python y encapsulado en un paquete instalable, acompañado de una interfaz de usuario interactiva para la visualización y experimentación de resultados.
 
-## Cómo empezar
+---
 
-### 1. Requisitos
+## 🚀 Demos en Vivo
 
-- Python 3.8 o superior
-- Git
+*   **📖 Documentación Completa:** [**kacruzv011.github.io/Solver_DF_sphinx/**](https://kacruzv011.github.io/Solver_DF_sphinx/)
+*   **🖥️ Aplicación Interactiva (Streamlit):** <!-- Reemplaza esta URL con el enlace de tu app en Streamlit Cloud --> [**Enlace a la App de Streamlit**](https://tu-app-de-streamlit.streamlit.app/)
 
-### 2. Configuración del Entorno
+---
+
+## ✨ Características Principales
+
+*   ⚛️ **Solucionador Numérico Modular:** Implementa los métodos iterativos de **Jacobi** y **Gauss-Seidel** para resolver el sistema de ecuaciones lineales.
+*   ⚡ **Cálculo del Campo Eléctrico:** Calcula el campo eléctrico (`E = -∇V`) a partir del potencial convergido usando `numpy.gradient`.
+*   📈 **Visualización de Datos:** Genera mapas de calor (heatmaps) para el potencial y gráficos de vectores (quiver plots) para el campo eléctrico con `matplotlib`.
+*   ✅ **Pruebas Unitarias:** Incluye un conjunto de pruebas con `pytest` para garantizar la correctitud del backend (caso trivial, convergencia y cálculo del campo).
+*   🖥️ **Interfaz Gráfica Interactiva:** Una aplicación web construida con **Streamlit** que permite a los usuarios configurar y ejecutar simulaciones en tiempo real sin escribir código.
+*   📚 **Documentación Profesional:** Documentación completa generada con **Sphinx**, incluyendo la teoría matemática, guías de uso y una referencia de la API autogenerada.
+*   📦 **Paquete Distribuible:** El backend está empaquetado y publicado en **PyPI**, lo que permite su fácil instalación y reutilización en otros proyectos.
+
+---
+
+## 🖼️ Captura de Pantalla
+
+<!-- 
+Crea una captura de pantalla de tu aplicación de Streamlit mostrando los gráficos y reemplaza la siguiente línea.
+Puedes subir la imagen a la raíz de tu repositorio de GitHub y enlazarla.
+-->
+![Captura de la App de Streamlit](https://i.imgur.com/example.png)
+
+---
+
+## 🛠️ Instalación
+
+Puedes instalar el paquete directamente desde PyPI:
 
 ```bash
-# Clona el repositorio (si lo subes a GitHub)
-# git clone ...
-# cd taller_electrostatica
+pip install Solver_campoelectrico_kevin
+```
+⚙️ Uso
 
-# Crea un entorno virtual
-python -m venv .venv
+El proyecto se puede utilizar de dos maneras: como una aplicación web interactiva o como una librería de Python en tus propios scripts.
+1. Como Aplicación Web Interactiva
 
-# Activa el entorno
-# En Linux/macOS:
-source .venv/bin/activate
-# En Windows:
-# .\.venv\Scripts\activate
+Para ejecutar la interfaz de usuario en tu máquina local:
 
-# Instala el paquete y todas las dependencias de desarrollo
+    Clona el repositorio:
+    code Bash
+
+    
+git clone https://github.com/kacruzv011/Solver_DF_sphinx.git
+cd Solver_DF_sphinx
+
+  
+
+Instala las dependencias necesarias:
+code Bash
+
+    
 pip install -e .[dev]
+
+  
+
+Ejecuta la aplicación:
+code Bash
+
+        
+    streamlit run app.py
+
+      
+
+2. Como Librería de Python
+
+Puedes importar LaplaceSolver2D en tus propios proyectos para realizar cálculos.
+code Python
+
+    
+from campo_estatico_mdf.solver import LaplaceSolver2D
+import numpy as np
+
+# 1. Crear una instancia del solver para una malla de 50x50
+solver = LaplaceSolver2D(N=50, V_left=10.0)
+
+# 2. Resolver el sistema usando el método de Gauss-Seidel
+iterations = solver.solve(method='gauss-seidel', tol=1e-5)
+print(f"La simulación convergió en {iterations} iteraciones.")
+
+# 3. Acceder al potencial V y calcular el campo eléctrico
+potential_matrix = solver.V
+Ex, Ey = solver.calculate_electric_field()
+
+print("¡Cálculo completado!")
+
+  
+
+🧑‍💻 Desarrollo y Pruebas
+
+Para contribuir al proyecto, sigue los pasos de instalación desde la fuente.
+
+    Para ejecutar las pruebas unitarias:
+    code Bash
+
+    
+pytest
+
+  
+
+Para construir la documentación localmente:
+code Bash
+
+        
+    make -C docs html
+
+      
+
+    Luego, abre docs/build/html/index.html en tu navegador.
+
+📂 Estructura del Proyecto
+code Code
+
+    
+Solver_DF_sphinx/
+├── .github/workflows/      # Automatización para desplegar la documentación
+├── docs/                   # Archivos fuente de la documentación (Sphinx)
+├── src/
+│   └── campo_estatico_mdf/ # El paquete Python instalable (Backend)
+│       └── solver.py
+├── tests/                  # Pruebas unitarias (pytest)
+├── app.py                  # Interfaz de usuario (Streamlit Frontend)
+├── pyproject.toml          # Definición del paquete para PyPI
+└── requirements.txt        # Dependencias para el despliegue de Streamlit
+
+  
+
+📄 Licencia
+
+Este proyecto está bajo la Licencia MIT.
+
+Autor: Kevin Andrés Cruz Velandia
