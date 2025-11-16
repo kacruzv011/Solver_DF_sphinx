@@ -8,7 +8,14 @@ st.set_page_config(layout="wide")
 st.title("Taller: Solución del Campo Electroestático 2D por Diferencias Finitas")
 st.markdown("Visualizador interactivo para la Ecuación de Laplace en una región cuadrada.")
 
+# --- Barra lateral para los inputs ---
 st.sidebar.header("Parámetros de Simulación")
+
+# ¡NUEVO WIDGET PARA SELECCIONAR EL MÉTODO!
+method = st.sidebar.selectbox(
+    "Método de Resolución",
+    ("Jacobi", "Gauss-Seidel")
+)
 
 N = st.sidebar.slider("Tamaño de la malla (N x N)", min_value=10, max_value=100, value=50, step=5)
 tol = st.sidebar.select_slider(
@@ -24,15 +31,22 @@ V_bottom = st.sidebar.number_input("Voltaje Inferior (V_bottom)", value=0.0)
 V_left = st.sidebar.number_input("Voltaje Izquierdo (V_left)", value=10.0)
 V_right = st.sidebar.number_input("Voltaje Derecho (V_right)", value=0.0)
 
+# --- Botón para ejecutar la simulación ---
 if st.sidebar.button("Resolver y Visualizar", type="primary"):
     
-    with st.spinner(f"Calculando potencial para una malla de {N}x{N}..."):
+    with st.spinner(f"Calculando con el método {method} para una malla de {N}x{N}..."):
+        # 1. Crear y resolver el sistema
         solver = LaplaceSolver2D(N, V_top, V_bottom, V_left, V_right)
-        iterations = solver.solve_jacobi(tol=tol)
+        
+        # ¡USAMOS EL NUEVO MÉTODO 'SOLVE' Y LE PASAMOS LA ELECCIÓN DEL USUARIO!
+        iterations = solver.solve(method=method.lower(), tol=tol)
+        
+        # 2. Calcular el campo eléctrico
         Ex, Ey = solver.calculate_electric_field()
 
-    st.success(f"¡Cálculo completado! Convergencia alcanzada en **{iterations}** iteraciones.")
+    st.success(f"¡Cálculo completado con {method}! Convergencia alcanzada en **{iterations}** iteraciones.")
     
+    # --- Visualización de resultados (sin cambios aquí) ---
     col1, col2 = st.columns(2)
     
     with col1:
