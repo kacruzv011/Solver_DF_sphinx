@@ -130,22 +130,17 @@ code Bash
 
     Luego, abre docs/build/html/index.html en tu navegador.
 
-📂 Estructura del Proyecto
-code Code
-
-    
 Solver_DF_sphinx/
-├── .github/workflows/      # Automatización para desplegar la documentación
-├── docs/                   # Archivos fuente de la documentación (Sphinx)
+├── .github/workflows/      # Automatización CI para documentación
+├── docs/                   # Documentación Sphinx
 ├── src/
-│   └── campo_estatico_mdf/ # El paquete Python instalable (Backend)
+│   └── campo_estatico_mdf/ # Paquete instalable (backend)
 │       └── solver.py
-├── tests/                  # Pruebas unitarias (pytest)
-├── app.py                  # Interfaz de usuario (Streamlit Frontend)
-├── pyproject.toml          # Definición del paquete para PyPI
-└── requirements.txt        # Dependencias para el despliegue de Streamlit
+├── tests/                  # Pruebas unitarias
+├── app.py                  # Interfaz Streamlit
+├── pyproject.toml          # Configuración del paquete PyPI
+└── requirements.txt        # Dependencias para la app
 
-  
 
 📄 Licencia
 
